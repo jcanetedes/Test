@@ -2,5 +2,7 @@
 
 public interface IManifest
 {
-    string GetAppName();
+    string ProjectName { get; }
+    string Version { get; }
+    string AssemblyName { get; }
 }
