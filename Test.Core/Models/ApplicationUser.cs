@@ -1,4 +1,4 @@
-﻿namespace Test.Core.Models;
+﻿namespace Test2.Core.Models;
 public class ApplicationUser
 {
     public string? Id { get; set; }

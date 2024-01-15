@@ -1,4 +1,4 @@
-﻿using Test.Core.Interfaces;
+﻿using Test2.Core.Interfaces;
 
 namespace Plugin2.Services
 {

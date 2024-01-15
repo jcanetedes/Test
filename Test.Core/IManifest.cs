@@ -1,4 +1,4 @@
-﻿namespace Test.Core;
+﻿namespace Test2.Core;
 
 public interface IManifest
 {

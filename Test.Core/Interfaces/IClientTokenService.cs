@@ -1,6 +1,6 @@
-﻿using Test.Core.Models;
+﻿using Test2.Core.Models;
 
-namespace Test.Core.Interfaces;
+namespace Test2.Core.Interfaces;
 public interface IClientTokenService
 {
     /// <summary>

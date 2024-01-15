@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.Core.Common;
+namespace Test2.Core.Common;
 
 public class CapAssembly
 {

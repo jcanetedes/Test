@@ -1,4 +1,4 @@
-﻿namespace Test.Core.Interfaces;
+﻿namespace Test2.Core.Interfaces;
 public interface IBladeDefinition
 {
     string ProjectName { get; }
