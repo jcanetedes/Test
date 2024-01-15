@@ -1,4 +1,5 @@
 ﻿@page "/"
+@page "/{PluginName}"
 @using Microsoft.AspNetCore.Components.Rendering
 
 <PageTitle>Index</PageTitle>
@@ -12,6 +13,9 @@ Welcome to your new app.
 
 @code
 {
+    [Parameter, EditorRequired]
+    public string PluginName { get; set; } = string.Empty;
+
     RenderFragment DynamicComponent { get; set; }
 
     protected override void OnParametersSet()
@@ -22,9 +26,9 @@ Welcome to your new app.
         };
     }
 
-
     private void CreateComponent(RenderTreeBuilder builder)
     {
+        //{Assembly.Component}
         Type moduletype = Type.GetType("Plugin2.Index, Plugin2", false, true);
         builder.OpenComponent(0, moduletype);
         builder.CloseComponent();

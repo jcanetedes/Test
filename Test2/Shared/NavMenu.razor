@@ -1,4 +1,7 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using Test.Core.Interfaces
+@using Test2.Core
+@inject IMenuService MenuService
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Test2</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -8,32 +11,46 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-    </nav>
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            @foreach (var manifest in Manifests)
+            {
+                <NavLink class="nav-link" href="@manifest.ProjectName" @onclick="()=>manifest.IsExpanded = !manifest.IsExpanded">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> @manifest.ProjectName
+                </NavLink>
+                @if (manifest.IsExpanded)
+                {
+                    <ul class="nav flex-column">
+                    @foreach(var menu in manifest.Menus)
+                    {
+                            <li class="nav-item px-3">
+                                <NavLink class="expand-menu" href="@menu.ComponentName">
+                                    <span>@menu.MenuName</span>
+                                </NavLink>
+                            </li>
+                    }
+                    </ul>
+                }
+            }
+        </li>
+    </ul>
 </div>
 
 @code {
+    private bool expandSubNav;
     private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
+    private List<IManifest> Manifests = new List<IManifest>();
+
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override void OnInitialized()
+    {
+        Manifests = MenuService.GetPluginManifest();
     }
 }

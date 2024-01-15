@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Loader;
+using Test.Core.Interfaces;
+using Test.Core.Services;
+using Test2.Core;
 using Test2.Core.Interfaces;
 
 namespace Test2;
@@ -55,6 +58,7 @@ public static class ServiceCollectionExtensions
         var hostedServiceType = typeof(IHostedService);
 
         var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName != null && (a.FullName.Contains("Plugin", StringComparison.OrdinalIgnoreCase)));
+        IMenuService menuService = new MenuService();
         foreach (var assembly in assemblies)
         {
             // dynamically register module scoped services (ie. client service classes)
@@ -68,6 +72,25 @@ public static class ServiceCollectionExtensions
                 }
             }
 
+            var implementationManifests = assembly.GetInterfaces<IManifest>();
+           
+            foreach (var implementationManifest in implementationManifests)
+            {
+                if (implementationManifest.AssemblyQualifiedName != null)
+                {
+                    if (implementationManifest is not null)
+                    {
+                        var manifestInstance = Activator.CreateInstance(implementationManifest);
+                        IManifest? iManifest = manifestInstance as IManifest;
+                        if(iManifest is not null)
+                        {
+                            menuService.RegisterManifest(iManifest);
+                        }
+                    }
+                }
+            }
+
+           
             // dynamically register module transient services (ie. server DBContext, repository classes)
             //implementationTypes = assembly.GetInterfaces<ITransientService>();
             //foreach (var implementationType in implementationTypes)
@@ -99,6 +122,7 @@ public static class ServiceCollectionExtensions
             //    .ToList()
             //    .ForEach(x => x.ConfigureServices(services));
         }
+        services.AddSingleton(menuService);
         return services;
     }
 
