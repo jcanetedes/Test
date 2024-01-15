@@ -7,10 +7,12 @@ namespace Test
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddOqtane();
+            
             // Add services to the container.
-            builder.Services.AddRazorComponents()
-                .AddInteractiveServerComponents();
+
+            //builder.Services.AddRazorComponents()
+            //    .AddInteractiveServerComponents();
 
             var app = builder.Build();
 
@@ -25,11 +27,11 @@ namespace Test
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
-            app.UseAntiforgery();
-
-            app.MapRazorComponents<App>()
-                .AddInteractiveServerRenderMode();
-
+            //app.UseAntiforgery();
+            
+            //app.MapRazorComponents<App>()
+            //    .AddInteractiveServerRenderMode();
+            
             app.Run();
         }
     }
