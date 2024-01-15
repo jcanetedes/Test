@@ -3,9 +3,11 @@ namespace Plugin1.Services
 {
     public class Plugin1Service : IPlugin1Service, IService
     {
-        public int GetRecord()
+        public int CountAsync()
         {
-            return 1;
+            var random = new Random();
+            return random.Next();
         }
+
     }
 }

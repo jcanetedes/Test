@@ -2,6 +2,6 @@
 {
     public interface IPlugin1Service
     {
-        int GetRecord();
+        int CountAsync();
     }
 }

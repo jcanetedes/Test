@@ -1,10 +1,26 @@
-﻿@using Test2.Core
+﻿@using Plugin1.Services
+@using Test2.Core
 @inherits Manifest
-
+@inject IPlugin1Service Plugin1Service
 <div class="my-component">
     This component is defined in the <strong>Plugin 1 test 123</strong> library.
 </div>
 
-
+<p>Random number: @random</p>
+@count; <button @onclick="onclick">counter</button>
 @code {
+    private int random;
+    protected override async Task OnInitializedAsync()
+    {
+        random = Plugin1Service.CountAsync();
+        await base.OnInitializedAsync();
+    }
+
+    int count = 0;
+
+    void onclick()
+    {
+        count++;
+        StateHasChanged();
+    }
 }
