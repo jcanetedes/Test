@@ -1,7 +1,9 @@
 ﻿@page "/"
 @page "/{PluginName}"
+@page "/{PluginName}/{ComponentName}"
 @using Microsoft.AspNetCore.Components.Rendering
-
+@using Test.Core.Interfaces
+@inject IMenuService MenuService;
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
@@ -13,8 +15,10 @@ Welcome to your new app.
 
 @code
 {
-    [Parameter, EditorRequired]
+    [Parameter]
     public string PluginName { get; set; } = string.Empty;
+    [Parameter]
+    public string ComponentName { get; set; } = string.Empty;
 
     RenderFragment DynamicComponent { get; set; }
 
@@ -28,8 +32,13 @@ Welcome to your new app.
 
     private void CreateComponent(RenderTreeBuilder builder)
     {
-        //{Assembly.Component}
-        Type moduletype = Type.GetType("Plugin2.Index, Plugin2", false, true);
+        if (string.IsNullOrEmpty(ComponentName) || string.IsNullOrEmpty(PluginName))
+        {
+            var manifest = MenuService.GetDefaultManifest();
+            ComponentName = manifest.DefaultPage;
+            PluginName = manifest.ProjectName;
+        }
+        Type moduletype = Type.GetType($"{PluginName}.{ComponentName}, {PluginName}", false, true);
         builder.OpenComponent(0, moduletype);
         builder.CloseComponent();
     }

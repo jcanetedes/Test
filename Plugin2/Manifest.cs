@@ -19,8 +19,10 @@ public class Manifest : IManifest
 
     public List<MenuModel> Menus { get; set;  } = new List<MenuModel>()
     {
-        new MenuModel(){ MenuName = "Plugin 1", ComponentName = "Index"},
-        new MenuModel(){ MenuName = "Sub Menu", ComponentName = "SubMenu"}
+        new MenuModel(){ MenuName = "Sub Menu 1", ComponentName = "SubMenu"},
+        new MenuModel(){ MenuName = "Sub Menu 2", ComponentName = "SubMenu2"}
     };
     public bool IsExpanded { get; set; } = false;
+
+    public string DefaultPage => "Index";
 }

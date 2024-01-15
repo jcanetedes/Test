@@ -15,7 +15,7 @@
         <li class="nav-item px-3">
             @foreach (var manifest in Manifests)
             {
-                <NavLink class="nav-link" href="@manifest.ProjectName" @onclick="()=>manifest.IsExpanded = !manifest.IsExpanded">
+                <NavLink class="nav-link" href="@GenerateHref(manifest.ProjectName,"Index")" @onclick="()=>manifest.IsExpanded = !manifest.IsExpanded">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> @manifest.ProjectName
                 </NavLink>
                 @if (manifest.IsExpanded)
@@ -24,7 +24,7 @@
                     @foreach(var menu in manifest.Menus)
                     {
                             <li class="nav-item px-3">
-                                <NavLink class="expand-menu" href="@menu.ComponentName">
+                                <NavLink class="expand-menu" href="@GenerateHref(manifest.ProjectName, menu.ComponentName)">
                                     <span>@menu.MenuName</span>
                                 </NavLink>
                             </li>
@@ -52,5 +52,10 @@
     protected override void OnInitialized()
     {
         Manifests = MenuService.GetPluginManifest();
+    }
+
+    private string GenerateHref(string pluginName, string component)
+    {
+        return $"{pluginName}/{component}";
     }
 }

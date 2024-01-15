@@ -12,6 +12,12 @@ namespace Test.Core.Services;
 public class MenuService : IMenuService
 {
     private readonly List<IManifest> manifests = new List<IManifest>();
+
+    public IManifest GetDefaultManifest()
+    {
+        return manifests.FirstOrDefault()!;
+    }
+
     public List<MenuModel> GetMenus(string pluginName)
     {
         List<MenuModel> menus = new List<MenuModel>();
