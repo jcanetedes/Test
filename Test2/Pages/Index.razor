@@ -25,14 +25,8 @@ Welcome to your new app.
 
     private void CreateComponent(RenderTreeBuilder builder)
     {
-        //dili makita ang assembly
-        //SampleService.GetAssemblies();
-        var dd = AppDomain.CurrentDomain;
-        var asd = AppDomain.CurrentDomain.GetAssemblies().Where(assembly => assembly.FullName != null && (assembly.FullName.Contains("Plugin", StringComparison.OrdinalIgnoreCase)));
         Type moduletype = Type.GetType("Plugin1.Index, Plugin1", false, true);
-        //Type moduletype = Type.GetType("Testin123.Sample, BlazorApp2.Client", false, true);
         builder.OpenComponent(0, moduletype);
-        //builder.AddAttribute(1, "ModuleState", module);
         builder.CloseComponent();
     }
 }
