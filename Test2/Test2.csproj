@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Test.Core\Test.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Packages\" />
+  </ItemGroup>
+
 </Project>
