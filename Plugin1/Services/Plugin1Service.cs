@@ -1,4 +1,4 @@
-﻿using Test2.Core.Interfaces;
+﻿using CAP.Interfaces2;
 namespace Plugin1.Services
 {
     public class Plugin1Service : IPlugin1Service, IService

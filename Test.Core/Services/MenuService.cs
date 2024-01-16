@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CAP.Interfaces2;
+using CAP.Interfaces2.Models;
 using Test.Core.Interfaces;
-using Test.Core.Models;
-using Test2.Core;
 
 namespace Test.Core.Services;
 
@@ -22,9 +17,9 @@ public class MenuService : IMenuService
     {
         List<MenuModel> menus = new List<MenuModel>();
 
-        var manifest = manifests.FirstOrDefault(c=>c.ProjectName == pluginName);
+        var manifest = manifests.FirstOrDefault(c => c.ProjectName == pluginName);
 
-        if(manifest is not null)
+        if (manifest is not null)
         {
             menus = manifest.Menus;
         }

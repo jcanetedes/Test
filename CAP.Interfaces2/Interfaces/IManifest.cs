@@ -1,6 +1,6 @@
-﻿using Test.Core.Models;
+﻿using CAP.Interfaces2.Models;
 
-namespace Test2.Core;
+namespace CAP.Interfaces2;
 
 public interface IManifest
 {

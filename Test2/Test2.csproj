@@ -10,4 +10,9 @@
     <ProjectReference Include="..\Test.Core\Test.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Plugin1" Version="1.0.0" />
+    <PackageReference Include="Plugin2" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>

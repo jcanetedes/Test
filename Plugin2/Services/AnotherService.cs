@@ -1,8 +1,8 @@
-﻿using Test2.Core.Interfaces;
+﻿using CAP.Interfaces2;
 
 namespace Plugin2.Services
 {
-    public class AnotherService : IAnotherService,IService
+    public class AnotherService : IAnotherService, IService
     {
         public void Check()
         {

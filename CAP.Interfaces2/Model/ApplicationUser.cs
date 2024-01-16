@@ -1,4 +1,4 @@
-﻿namespace Test2.Core.Models;
+﻿namespace CAP.Interfaces2.Models;
 public class ApplicationUser
 {
     public string? Id { get; set; }

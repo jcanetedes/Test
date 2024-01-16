@@ -1,12 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Test.Core.Models;
-using Test2.Core;
-using Test2.Core.Interfaces;
+﻿using CAP.Interfaces2;
+using CAP.Interfaces2.Models;
 
 namespace Plugin1;
 

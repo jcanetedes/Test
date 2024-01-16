@@ -1,6 +1,6 @@
-﻿using Test2.Core.Models;
+﻿using CAP.Interfaces2.Models;
 
-namespace Test2.Core.Interfaces;
+namespace CAP.Interfaces2;
 public interface IClientTokenService
 {
     /// <summary>

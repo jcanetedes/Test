@@ -1,4 +1,4 @@
-﻿namespace Test2.Core.Interfaces;
+﻿namespace CAP.Interfaces2;
 public interface IHttpClientService
 {
 

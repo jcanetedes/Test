@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
+﻿using CAP.Interfaces2;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Loader;
 using Test.Core.Interfaces;
 using Test.Core.Services;
-using Test2.Core;
-using Test2.Core.Interfaces;
 
 namespace Test2;
 
@@ -73,7 +72,7 @@ public static class ServiceCollectionExtensions
             }
 
             var implementationManifests = assembly.GetInterfaces<IManifest>();
-           
+
             foreach (var implementationManifest in implementationManifests)
             {
                 if (implementationManifest.AssemblyQualifiedName != null)
@@ -82,7 +81,7 @@ public static class ServiceCollectionExtensions
                     {
                         var manifestInstance = Activator.CreateInstance(implementationManifest);
                         IManifest? iManifest = manifestInstance as IManifest;
-                        if(iManifest is not null)
+                        if (iManifest is not null)
                         {
                             menuService.RegisterManifest(iManifest);
                         }
@@ -90,7 +89,7 @@ public static class ServiceCollectionExtensions
                 }
             }
 
-           
+
             // dynamically register module transient services (ie. server DBContext, repository classes)
             //implementationTypes = assembly.GetInterfaces<ITransientService>();
             //foreach (var implementationType in implementationTypes)

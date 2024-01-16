@@ -1,4 +1,4 @@
-﻿namespace Test2.Core.Models;
+﻿namespace CAP.Interfaces2.Models;
 public class AccessToken
 {
     public string? Token { get; set; }
