@@ -20,6 +20,7 @@ namespace Test2
         public void ConfigureServices(IServiceCollection services)
         {
             // install any modules or themes ( this needs to occur BEFORE the assemblies are loaded into the app domain )
+            services.AddServerSideBlazor();
             InstallationManager.InstallPackages(_env.WebRootPath, _env.ContentRootPath);
             services.AddOqtane();
             services.AddMvc();
@@ -43,6 +44,7 @@ namespace Test2
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapBlazorHub();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToPage("/_Host");
             });
