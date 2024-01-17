@@ -100,32 +100,6 @@ namespace Test2.Infrastructure
                                 filename = ExtractFile(entry, contentRootPath, 0);
                                 break;
                         }
-
-                        if (filename != "")
-                        {
-                            // ContentRootPath sometimes produces inconsistent path casing - so can't use string.Replace()
-                            filename = Regex.Replace(filename, Regex.Escape(contentRootPath), "", RegexOptions.IgnoreCase);
-                            assets.Add(filename);
-                            if (!manifest && Path.GetExtension(filename) == ".log")
-                            {
-                                manifest = true;
-                            }
-                        }
-                    }
-
-                    // save dynamic list of assets
-                    if (!manifest && assets.Count != 0)
-                    {
-                        string manifestpath = Path.Combine(sourceFolder, name + ".log");
-                        if (File.Exists(manifestpath))
-                        {
-                            File.Delete(manifestpath);
-                        }
-                        if (!Directory.Exists(Path.GetDirectoryName(manifestpath)))
-                        {
-                            Directory.CreateDirectory(Path.GetDirectoryName(manifestpath));
-                        }
-                        File.WriteAllText(manifestpath, JsonSerializer.Serialize(assets, new JsonSerializerOptions { WriteIndented = true }));
                     }
                 }
 
